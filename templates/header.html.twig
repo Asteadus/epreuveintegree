@@ -1,0 +1,26 @@
+<header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-blue shadow-sm fixed-top text-white">
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a class="text-white" href="{{ path('homepage') }}">Réservation tennis</a></h5>
+
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-orange">Bonjour {{ app.user.lastname }} {{ app.user.firstname }} </a>
+                <a class="p-2 text-white" href="{{ path('booking_new') }}">Réserver un terrain</a>
+                <a class="p-2 text-white" href="{{ path('booking_index') }}">Mes réservations</a>
+                <a class="p-2 text-white" href="{{ path('profil', {'id': app.user.id})}}">Mon profil</a>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a class="p-2 text-white" href="{{ path('users') }}">Liste des utilisateurs</a>
+                {% endif %}
+            </nav>
+
+            <a class="btn btn-nav" href="{{ path('app_logout') }}">Se déconnecter</a>
+        {% else %}
+            <a class="btn btn-nav mr-2" href="{{ path('app_register') }}">S'inscrire</a>
+
+            <a class="btn btn-nav" href="{{ path('app_login') }}">Se connecter</a>
+        {% endif %}
+
+
+    </div>
+</header>

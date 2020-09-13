@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include("header.html.twig") }}
+
+    <main class="mt-100 main-signup-size" role="main">
+
+    <h1 class="text-blue text-center pb-5">Liste des utilisateurs</h1>
+        <div class="table-responsive">
+            <table class="table table-form">
+
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <th scope="col">Entraineur</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in listUsers  %}
+                    <tr>
+                        <th scope="row">{{ user.id }}</th>
+                        <td><a href="{{ path('profil', {'id': user.id})}}"> {{ user.lastname }}</a></td>
+                        <td> {{ user.firstname }}</td>
+                        <td> {{ user.email }}</td>
+                        {% if is_granted("ROLE_ADMIN") %}
+
+                          {% if user.roles[0]==("ROLE_USER") %}
+                                <td><a href="{{ path('addtrainer', {'id': user.id})}}"> Donner le rôle entraineur</a></td>
+
+                          {% endif %}
+                            {% if user.roles[0]==("ROLE_TRAINER") %}
+                                <td>Ce membre est déjà un entraineur</td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </main>
+
+{% endblock %}

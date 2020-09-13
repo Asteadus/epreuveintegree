@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include("header.html.twig") }}
+
+
+    <main class="mt-100 main-signup-size" role="main">
+    <div class="signup-form">
+        <form>
+            <h2 class="text-blue">Mon profil</h2>
+
+            <hr>
+            {% if app.user %}
+            <div class="form-group">
+                <div class="row-form">
+                    <div class="col-sm-6"><input type="text" class="form-control" name="first_name" placeholder="{{ user.firstname }}" required="required" disabled="true"></div>
+                    <div class="col-sm-6"><input type="text" class="form-control" name="last_name" placeholder="{{ user.lastname }}" required="required" disabled="true"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="{{ user.username }}" required="required" disabled="true">
+            </div>
+
+            {% endif %}
+        </form>
+    </div>
+        <h1 class="text-blue text-center pb-5">Toutes mes réservations</h1>
+        <div class="table-responsive">
+            <table class="table table-form">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date début</th>
+                    <th scope="col">Date fin</th>
+                    <th scope="col">Nom de la résevation</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td scope="row">{{ booking.id }}</td>
+                        <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ booking.user.lastname }}</td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Pas de réservation disponible</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+{% endblock %}
+
+
+

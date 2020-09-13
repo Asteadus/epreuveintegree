@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include("header.html.twig") }}
+
+    <main role="main" class="bg-white pb-5">
+
+        <section class="text-center bg-white">
+            <div class="block-img">
+                <img class="position-relative" src="{{asset('images/tennis_index.jpg')}}" alt="tennis index" width="100%">
+            </div>
+
+            <div class="container">
+                <div class="row textReservation">
+                    <p class="position-relative">La poésie en vers libres, c'est comme jouer au tennis sans filet. </p>
+                    <a class="btnAc" href="{{ path('booking_new') }}">Je réserve un terrain !</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-white">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Bienvenue sur ce site de réservation de terrain de tennis !</h3>
+                        <p>
+                            Vous en avez assez de devoir attendre pour pouvoir jouer une partie de tennis entre amis, de ne jamais avoir de terrain disponible à l’heure que vous le souhaitez ?
+                            Ce site est votre solution, il va vous permettre de réserver un terrain quand vous le souhaitez, vous n’aurez plus qu’à vous rendre sur le terrain à l’heure que vous aurez réservée !
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Comment celui-ci fonctionne-t-il ?
+                            C’est assez simple, après votre inscription, vous aurez la possibilité de réserver une plage horaire sur en terrain en fonction des disponibilités restantes.
+                            Lorsque vous aurez réservé votre terrain, il vous sera possible de consulter toutes vos réservations et donc de pouvoir annuler une d’entre-elles si nécessaire.
+                        </p>
+                        <p>
+                            Ce site permet également aux entraineurs de réserver certaines plages horaires qui leur sont dédiés.
+                            Pour qu’eux aussi n’ait plus de soucis pour trouver un terrain pour donner leur cours !
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{ include("footer.html.twig") }}
+{% endblock %}
